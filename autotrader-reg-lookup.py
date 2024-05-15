@@ -6,7 +6,7 @@ import pyodbc
 
 @st.cache_data
 def get_autotrader_data(n=1000):
-    cnxn = pyodbc.connect(r'Driver=SQL Server;Server=MP-SQL;Database=AutoTrader;Trusted_Connection=yes;')
+    cnxn = pyodbc.connect("Driver=SQL Server;Server=MP-SQL;Database=AutoTrader;UID=" + st.secrets["DB_USERNAME"] + ";PWD=" + st.secrets["DB_PASSWORD"])
     sql = "select top " + str(n) + " * from [AutoTrader].[dbo].[Vehicles] (nolock) aut"
     df = pd.read_sql(sql,cnxn)
     return df.set_index("Registration")
