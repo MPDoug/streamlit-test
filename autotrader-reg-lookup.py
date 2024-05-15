@@ -4,7 +4,7 @@ import numpy as np
 from urllib.error import URLError
 import pyodbc
 
-@st.cache_data
+#@st.cache_data
 def get_autotrader_data(n=1000):
     cnxn = pyodbc.connect("Driver=SQL Server;Server=MP-SQL;Database=AutoTrader;UID=" + st.secrets["DB_USERNAME"] + ";PWD=" + st.secrets["DB_PASSWORD"])
     sql = "select top " + str(n) + " * from [AutoTrader].[dbo].[Vehicles] (nolock) aut"
